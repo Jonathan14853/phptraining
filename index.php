@@ -1,7 +1,7 @@
 <?php
 
-print "This is Jonathan Walumbe <br>";
-$name="Hillary Blessing <br>";
+print "This is James Kuta Simiyu  <br>";
+$name="Hillary Thomas Blessing <br>";
 $two=2;
 $three=3;
 print $name;
