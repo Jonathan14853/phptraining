@@ -72,20 +72,21 @@
 <html>
     <head>
         <title>Form Validation</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <form action="validation.php" method="POST">
+        <form action="validation.php" method="POST" class="form-group">
             <table>
                 <tr>
                     <td>Name:</td>
-                    <td><input type="text" name="name" required="required">
+                    <td><input class="form-control" type="text" name="name" required="required">
                         <span class="error">* <?phpecho $nameErr?></span>
                     </td>
                 </tr>
                 
                 <tr>
                     <td>Email:</td>
-                    <td><input type="text" name="email" required="required">
+                    <td><input class="form-control" type="text" name="email" required="required">
                         <span class="error">* <?php echo $emailErr?></span>
                     </td>
                 </tr>
@@ -101,7 +102,7 @@
                 
                 <tr>
                     <td>Time:</td>
-                    <td><input type="text" name="course">
+                    <td><input type="text" class="form-control" name="course">
                         <span class="error">*<?php echo $websiteErr?></span>
                     </td>
                 </tr>
@@ -109,7 +110,7 @@
                 <tr>
                     <td>Classes:</td>
                     <td>
-                        <textarea name="class" rows="5" cols="40"></textarea>
+                        <textarea class="form-control"   name="class" rows="5" cols="40"></textarea>
                     </td>
                 </tr>
                 
@@ -130,7 +131,7 @@
                     <td>Agree</td>
                     <td><input type="checkbox" name="checked"  value="1"></td>
                     <?php if(!isset($_POST['cheked'])){}?>
-                    <span class="error">* <?php echo "Please Aree to terms"?></span>
+                    <span class="error">* <?php echo "Please Agree to terms"?></span>
                 </tr>
                 
                 <tr>
