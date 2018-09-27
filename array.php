@@ -45,7 +45,7 @@
     
 //numeric array
     
-    $digits = array(11,12,13,14,15);
+    $digits = array("eleven","twelve","thirteen","fourteen","fifteen");
     
     foreach($digits as $value){
         echo "Value is $value<br>";
