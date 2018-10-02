@@ -2,9 +2,6 @@
     <head>
         <title>PHP Tables</title>
     </head>
-    <style>
-        border-collapse:collapse;
-    </style>
     <body>
             <form action = "table.php" method = "POST">
                 <table>
