@@ -5,8 +5,10 @@
         <group>
             <file>file:/var/www/html/detailValidation.php</file>
             <file>file:/var/www/html/validation.php</file>
+            <file>file:/var/www/html/cake.php</file>
             <file>file:/var/www/html/myValidation.php</file>
             <file>file:/var/www/html/validate.php</file>
+            <file>file:/var/www/html/contact.php</file>
         </group>
     </open-files>
 </project-private>

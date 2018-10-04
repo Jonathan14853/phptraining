@@ -65,6 +65,7 @@ if(!empty($_POST['submitted']))
 <!DOCTYPE html>
 <html >
 <head>
+    <style>.error {color:#0000FF}; </style>
     <title>Cake Form</title>
     <link href="cakeform.css" rel="stylesheet" type="text/css" />
 </head>
