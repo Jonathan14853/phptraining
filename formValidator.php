@@ -34,12 +34,12 @@ if(!empty($_POST["submitted"])){
     }else{
         $programme = $_POST["programme"];
     }
-    if(empty($_POST['agree'])){
+    /*if(empty($_POST['agree'])){
         $terms_error = "if you agree please check the box below";
         $error = true;
     }else{
         $agree=$_POST['agree'];
-    }
+    }*/
 }
 ?>
 
@@ -92,7 +92,7 @@ if(!empty($_POST["submitted"])){
                                        </select>
                             </div>
                             
-                            <input type="submit"  name="Submitted" value="submit" id="submit">
+                            <input type="submit"  name="submitted" value="submit" id="submit">
                         </fieldset>
                     </div>
                 </div>
