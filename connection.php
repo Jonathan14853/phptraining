@@ -1,17 +1,17 @@
 <?php
 
-	$dbhost = "jonathan.com";
-	$dbuser = "root";
+	$dbhost = "localhost";
+	$dbuser = "admin";
 	$dbpass = "password";
-	$db     ="employee";
+	$db     ="jonathan";
 	
 	$conn = new mysqli($dbhost,$dbuser,$dbpass,$db);
-	
+
 	//checking connection
-	
+
 	if($conn->connect_error){
-		echo "Connection failed";
+		//echo "Connection failed";
 	}else{
-		echo "Connection successfull";
+		//echo "Connection successfull";
 	}
 ?>

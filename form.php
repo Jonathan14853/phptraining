@@ -21,7 +21,6 @@ foreach ($_POST as $key => $value) {
     <head><title>Form::</title></head>
     <body>
         <form action="form.php" method="POST" >
-            <p><b>Customer Registration</b></p> <br>
             <input type="text" name="first_name" placeholder="First Name"/>
             <br/>
             <br/>

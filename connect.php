@@ -1,10 +1,10 @@
 <?php
 
 
-    DEFINE ('DB_USER', 'admin');
+    DEFINE ('DB_USER', 'root');
     DEFINE ('DB_PSWD', 'password');
     DEFINE ('DB_HOST', 'jonathan.com');
-    DEFINE ('DB_NAME', 'employee');
+    DEFINE ('DB_NAME', 'Jonathan');
     
     
     $dbcon = new mysqli(DB_USER,DB_PSWD,DB_HOST,DB_NAME);

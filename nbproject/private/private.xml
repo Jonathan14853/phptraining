@@ -10,6 +10,7 @@
             <file>file:/var/www/html/cake.php</file>
             <file>file:/var/www/html/myValidation.php</file>
             <file>file:/var/www/html/connection.php</file>
+            <file>file:/var/www/html/connect.php</file>
             <file>file:/var/www/html/contact.php</file>
         </group>
     </open-files>
