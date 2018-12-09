@@ -67,7 +67,7 @@ $result= getPerson($conn);
                             <form action="padawan.php" method="POST">
                                 <input type="hidden" name="action" value="delete"/>
                                 <input type="hidden" name="id" value="<?=$row['id'];?>"/>
-                                <input type="submit" name="delete" value="delete"/>
+                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
                             </form>
                         </td>
                         </tr>
