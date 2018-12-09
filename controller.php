@@ -61,8 +61,6 @@ function test_input($data) {
   return $data;
 }
 
-
-
 if(!empty($name) && !empty($email) && !empty($website) && !empty($comment) && !empty($gender))
 {
    echo "<h2>Your Input:</h2>";
@@ -75,8 +73,8 @@ echo "<br>";
 echo $comment;
 echo "<br>";
 echo $gender; 
-$sql = "INSERT INTO person (name, email)
-VALUES ('$name', '$email')";
+$sql = "INSERT INTO person (name,email,gender,website)
+VALUES ('$name', '$email',$gender,'$website')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

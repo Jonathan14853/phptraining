@@ -4,7 +4,7 @@
 	$dbuser = "admin";
 	$dbpass = "password";
 	$db     ="jonathan";
-	
+
 	$conn = new mysqli($dbhost,$dbuser,$dbpass,$db);
 
 	//checking connection
