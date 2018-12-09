@@ -1,78 +1,71 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$nameErr = $emailErr = $genderErr = $websiteErr = "";
+$name = $email = $gender  = $website = "";
+$error=array(
+    'name'=>'',
+    'email'=>'',
+    'gender'=>'',
+    'website'=>''
+);
+
+switch ($_POST['action']) {
+    case "create":
+        $error=createPerson($conn);
+        break;
+    case "delete":
+        $id=$_POST['id'];
+        deletePerson($conn, $id);
+        break;
+    case 'update':
+        break;
+
+    default:
+        break;
+}
+
+function createPerson($conn)
+{
   if (empty($_POST["name"])) {
-    $nameErr = "Please fill in your name";
+    $error['name'] = "Please fill in your name";
   } else {
     $name = test_input($_POST["name"]);
     //A name should only contain letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed";
+      $error['name'] = "Only letters and white space allowed";
     }
   }
   
   if (empty($_POST["email"])) {
-    $emailErr = "Please fill in your email";
+    $error['email'] = "Please fill in your email";
   } else {
     $email = test_input($_POST["email"]);
     // check if e-mail address is well-formed
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Invalid email format";
+      $error['email'] = "Invalid email format";
     }
   }
     
   if (empty($_POST["website"])) {
-    $website = "";
+    $error['website'] = "Website is required";
   } else {
     $website = test_input($_POST["website"]);
     // used to check whether a url is valid.
     if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
-      $websiteErr = "Invalid URL";
+      $error['email'] = "Invalid URL";
     }    
   }
-
-  if (empty($_POST["comment"])) {
-    $comment = "";
-  } else {
-    $comment = test_input($_POST["comment"]);
-  }
-
   if (empty($_POST["gender"])) {
-    $genderErr = "Gender is required";
+    $error['gender'] = "Gender is required";
   } else {
     $gender = test_input($_POST["gender"]);
   }
-}
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
 
-if(!empty($name) && !empty($email) && !empty($website) && !empty($comment) && !empty($gender))
+
+if(!empty($name) && !empty($email) && !empty($website) && !empty($gender))
 {
-   echo "<h2>Your Input:</h2>";
-echo $name;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo $website;
-echo "<br>";
-echo $comment;
-echo "<br>";
-echo $gender; 
 $sql = "INSERT INTO person (name,email,gender,website)
 VALUES ('$name', '$email',$gender,'$website')";
 
@@ -82,5 +75,26 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
+//$conn->close();
+
+}
+return $error;
+}
+
+function getPerson($conn)
+{
+    $data= mysqli_query($conn, "SELECT * FROM person");
+    return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
+
+}
+function deletePerson($conn,$id)
+{
+    mysqli_query($conn, "DELETE  FROM person WHERE id=$id");
+    //$conn->close();
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
