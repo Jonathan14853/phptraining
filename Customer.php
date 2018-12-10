@@ -1,7 +1,7 @@
 <?php
-include "contactConnect.php";
-include "contactControl.php";
-$result= getContact($conn);
+include "customerConnect.php";
+include "controlCustomer.php";
+$result= getCustomers($conn);
 
 ?>
 <html>
@@ -24,33 +24,30 @@ $result= getContact($conn);
                 <div class="col-md-4">
             <p><span class="error"></span></p>
                 <form class="form-group" method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-                     <input placeholder="Name:" class="form-control" type="text" name="name">
-                        <span class="error"> <?=$error['name'];?></span>
-                        <br>
-                         <input type="text" placeholder="Email:" class="form-control" name="email">
-                        <span class="error"> <?=$error['email'];?></span>
-                        <br>
-                         <select id="gender" name="technologies" placeholder="Technologies:" class="form-control">
+                     <input placeholder="Customer Name:" class="form-control" type="text" name="customer_name">
+                        <span class="error"> <?=$error['customer_name'];?></span>
+                         <input type="text" placeholder="Customer Email:" class="form-control" name="customer_email">
+                        <span class="error"> <?=$error['customer_email'];?></span>
+                        <input type="text" class="form-control" placeholder="Customer Number:" name="customer_num">
+                        <span class="error"><?=$error['customer_num'];?></span>
+                         <select id="gender" name="gender" placeholder="Gender:" class="form-control">
                             <option value="">Select</option>
-                            <option value="PHP">PHP</option>
-                            <option value="HTML">HTML</option>
-                            <option value="JAVA">JAVA</option>
-                            <option value="C#">C#</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
-                        <span class="error"> <?=$error['technologies'];?></span>
-                        <br>
+                        <span class="error"> <?=$error['gender'];?></span>
                         <input type="hidden" name="action" value="create"/>
-                         <input type="submit" name="submit" class="form-control btn btn-success" value="Submit"> 
-                         
+                         <input type="submit" name="submit" class="form-control btn btn-success" value="Submit">  
                 </form>
                 </div>
                 <div class="col-md-8">
                     <table class="table table-purple">
                         <thead><tr>
                                      <th>id</th>
-                            <th>name</th>
-                            <th>email</th>
-                            <th>technologies</th>
+                            <th>customer_name</th>
+                            <th>customer_email</th>
+                            <th>customer_num</th>
+                            <th>gender</th>
                             <th>Delete</th>
                             </tr>
                         </thead>
@@ -62,11 +59,12 @@ $result= getContact($conn);
                             ?>
                         <tr>
                             <td><?=$row['id'];?></td>
-                            <td><?=$row['name'];?></td>
-                            <td><?=$row['email'];?></td>
-                            <td><?=$row['technologies'];?></td>
+                            <td><?=$row['customer_name'];?></td>
+                            <td><?=$row['customer_email'];?></td>
+                            <td><?=$row['customer_num'];?></td>
+                            <td><?=$row['gender'];?></td>
                         <td>
-                            <form action="contact.php" method="POST">
+                            <form action="padawan.php" method="POST">
                                 <input type="hidden" name="action" value="delete"/>
                                 <input type="hidden" name="id" value="<?=$row['id'];?>"/>
                                 <input type="submit" class="btn btn-danger" name="delete" value="delete"/>

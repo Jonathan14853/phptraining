@@ -1,45 +1,86 @@
 <?php
 include "customerConnect.php";
-include "customerControl.php";
+include "controlCustomer.php";
+$result= getCustomers($conn);
+
 ?>
 <html>
     <head>
         <style>
             .error {color: #0000FF;} 
         </style>
-        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css"  crossorigin="anonymous">
-        <script src="bootstrap/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>     
     </head>
     <body>  
         <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                                           
+            <div class="row"> 
+                <div class="col-md-4"></div>
+                <div class="col-md-4">                
+</div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">        
                 <div class="col-md-4">
-                    <p>Customer Registration</p>
             <p><span class="error"></span></p>
-                <form class="form-group" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-                        Customer Name: <input class="form-control" type="text" name="custom_name">
-                        <span class="error">* <?php echo $custom_nameErr;?></span>
+                <form class="form-group" method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+                     <input placeholder="Customer Name:" class="form-control" type="text" name="customer_name">
+                        <span class="error"> <?=$error['customer_name'];?></span>
                         <br>
-                        Customer E-mail: <input type="text" class="form-control" name="custom_email">
-                        <span class="error">* <?php echo $custom_emailErr;?></span>
+                         <input type="text" placeholder="Customer Email:" class="form-control" name="customer_email">
+                        <span class="error"> <?=$error['customer_email'];?></span>
                         <br>
-                        Customer Number: <input type="text" class="form-control" name="custom_num">
-                        <span class="error">*<?php echo $custom_numErr;?></span>
+                        <input type="text" class="form-control" placeholder="Customer Number:" name="customer_num">
+                        <span class="error"><?=$error['customer_num'];?></span>
                         <br>
-                        Gender:
-                        <select value="custom_gender" id="custom_gender">
+                         <select id="gender" name="gender" placeholder="Gender:" class="form-control">
+                            <option value="">Select</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
+                        <span class="error"> <?=$error['gender'];?></span>
                         <br>
-                        <span class="error">*<?php echo $custom_genderErr; ?></span>
-                        <br>
-                        <input type="submit" name="submit" class="btn btn-success" value="Submit">
+                        <input type="hidden" name="action" value="create"/>
+                         <input type="submit" name="submit" class="form-control btn btn-success" value="Submit">  
                 </form>
                 </div>
-                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <table class="table table-purple">
+                        <thead><tr>
+                                     <th>id</th>
+                            <th>customer_name</th>
+                            <th>customer_email</th>
+                            <th>customer_num</th>
+                            <th>gender</th>
+                            <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                        <?php
+                        foreach($result as $row)
+                        {
+                            ?>
+                        <tr>
+                            <td><?=$row['id'];?></td>
+                            <td><?=$row['customer_name'];?></td>
+                            <td><?=$row['customer_email'];?></td>
+                            <td><?=$row['customer_num'];?></td>
+                            <td><?=$row['gender'];?></td>
+                        <td>
+                            <form action="padawan.php" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="id" value="<?=$row['id'];?>"/>
+                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
+                            </form>
+                        </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

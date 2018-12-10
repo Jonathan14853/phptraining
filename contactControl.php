@@ -1,21 +1,21 @@
 <?php
 // define variables and set to empty values
 
-$nameErr = $emailErr = $passwordErr = "";
-$name = $email = $password = "";
+$nameErr = $emailErr = $technologiesErr = "";
+$name = $email = $technologies  ="";
 $error=array(
     'name'=>'',
     'email'=>'',
-    'password'=>''
+    'technologies'=>'',
 );
 
 switch ($_POST['action']) {
     case "create":
-        $error=createRegister($conn);
+        $error=createContact($conn);
         break;
     case "delete":
         $id=$_POST['id'];
-        deleteRegister($conn, $id);
+        deleteContact($conn, $id);
         break;
     case 'update':
         break;
@@ -24,7 +24,7 @@ switch ($_POST['action']) {
         break;
 }
 
-function createRegister($conn)
+function createContact($conn)
 {
   if (empty($_POST["name"])) {
     $error['name'] = "Please fill in your name";
@@ -46,18 +46,18 @@ function createRegister($conn)
     }
   }
     
-  if (empty($_POST["password"])) {
-    $error['password'] = "Password is required";
+  if (empty($_POST["technologies"])) {
+    $error['technologies'] = "Select one technology";
   } else {
-    $password = test_input($_POST["password"]);
-    }    
+    $technologies = test_input($_POST["technologies"]);
+  }
 
 
 
-if(!empty($name) && !empty($email) && !empty($password))
+if(!empty($name) && !empty($email) && !empty($technologies))
 {
-$sql = "INSERT INTO registers (name,email,password)
-VALUES ('$name', '$email','$password')";
+$sql = "INSERT INTO contact (name,email,technologies)
+VALUES ('$name', '$email','$technologies')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
@@ -69,17 +69,17 @@ if ($conn->query($sql) === TRUE) {
 
 }
 return $error;
-
 }
-function getRegister($conn)
+
+function getContact($conn)
 {
-    $data= mysqli_query($conn, "SELECT * FROM registers");
+    $data= mysqli_query($conn, "SELECT * FROM contact");
     return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
 
 }
-function deleteRegister($conn,$id)
+function deleteContact($conn,$id)
 {
-    mysqli_query($conn, "DELETE  FROM registers WHERE id=$id");
+    mysqli_query($conn, "DELETE  FROM contact WHERE id=$id");
     //$conn->close();
 }
 function test_input($data) {

@@ -1,45 +1,76 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.*/
- 
 include "registerConn.php";
 include "registerControl.php";
+$result= getRegister($conn);
 
 ?>
 <html>
     <head>
         <style>
-            .error{color:#0000FF};
+            .error {color: #0000FF;} 
         </style>
-        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css"  crossorigin="anonymous">
-        <script src="bootstrap/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>     
     </head>
-    <body>
+    <body>  
         <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                                           
-                <div class="col-md-4">
-                    <p>Registration Form</p>
-                    <p><span class="error"></span></p>
-                    <form class="form-group" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                        Name:<input class="form-control" type="text" name="name">
-                        <span class="error">* <?php echo $nameErr;?></span>
-                        <br>
-                        Email:<input class="form-control" type="text" name="email">
-                        <span class="error">* <?php echo $emailErr;?></span>
-                        <br>
-                        Password:<input class="form-control" type="text" name="pass">
-                        <span class="error">* <?php echo $passErr;?></span>
-                        <br>
-                        <input type="submit" name="submit" class="btn btn-success" value="submit">
-                    </form>
-                </div>
+            <div class="row"> 
+                <div class="col-md-4"></div>
+                <div class="col-md-4">                <h4>Simple Register</h4>
+</div>
                 <div class="col-md-4"></div>
             </div>
+            <div class="row">        
+                <div class="col-md-4">
+            <p><span class="error"></span></p>
+                <form class="form-group" method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+                     <input placeholder="Name:" class="form-control" type="text" name="name">
+                        <span class="error"> <?=$error['name'];?></span>
+                         <input type="text" placeholder="Email:" class="form-control" name="email">
+                        <span class="error"> <?=$error['email'];?></span>
+                        <input type="text" class="form-control" placeholder="Password:" name="password">
+                        <span class="error"><?=$error['password'];?></span>
+                        <input type="hidden" name="action" value="create"/>
+                         <input type="submit" name="submit" class="form-control btn btn-success" value="Submit">  
+                </form>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-dark">
+                        <thead><tr>
+                                     <th>id</th>
+                            <th>name</th>
+                            <th>email</th>
+                            <th>password</th>
+                            <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                        <?php
+                        foreach($result as $row)
+                        {
+                            ?>
+                        <tr>
+                            <td><?=$row['id'];?></td>
+                            <td><?=$row['name'];?></td>
+                            <td><?=$row['email'];?></td>
+                            <td><?=$row['password'];?></td>
+                        <td>
+                            <form action="padawan.php" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="id" value="<?=$row['id'];?>"/>
+                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
+                            </form>
+                        </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
     </body>
 </html>
