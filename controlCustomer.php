@@ -21,9 +21,9 @@ switch ($_POST['action']) {
     case "create":
         $error=createCustomers($conn);
         break;
-    case "delete":
+    case "update":
         $id=$_POST['id'];
-        deleteCustomers($conn, $id);
+        updateCustomers($conn, $id);
         break;
     case 'update':
         break;
@@ -70,7 +70,7 @@ function createCustomers($conn)
 if(!empty($customer_name) && !empty($customer_email) && !empty($customer_num) && !empty($gender))
 {
 $sql = "INSERT INTO customers (customer_name,customer_email,customer_num,gender)
-VALUES ('$customer_name', '$customer_email',$customer_num,'$gender')";
+VALUES ('$customer_name', '$customer_email','$customer_num','$gender')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
@@ -90,9 +90,9 @@ function getCustomers($conn)
     return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
 
 }
-function deleteCustomers($conn,$id)
+function updateCustomers($conn,$id)
 {
-    mysqli_query($conn, "DELETE  FROM customers WHERE id=$id");
+    mysqli_query($conn, "UPDATE customers WHERE id=$id");
     //$conn->close();
 }
 function test_input($data) {

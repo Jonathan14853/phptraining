@@ -13,9 +13,9 @@ switch ($_POST['action']) {
     case "create":
         $error=createRegister($conn);
         break;
-    case "delete":
+    case "update":
         $id=$_POST['id'];
-        deleteRegister($conn, $id);
+        updateRegister($conn, $id);
         break;
     case 'update':
         break;
@@ -77,9 +77,9 @@ function getRegister($conn)
     return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
 
 }
-function deleteRegister($conn,$id)
+function updateRegister($conn,$id)
 {
-    mysqli_query($conn, "DELETE  FROM registers WHERE id=$id");
+    mysqli_query($conn, "UPDATE  registers WHERE id=$id");
     //$conn->close();
 }
 function test_input($data) {

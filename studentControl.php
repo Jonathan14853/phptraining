@@ -15,9 +15,9 @@ switch ($_POST['action']) {
     case "create":
         $error=createStudents($conn);
         break;
-    case "delete":
+    case "update":
         $id=$_POST['id'];
-        deleteStudents($conn, $id);
+        updateStudents($conn, $id);
         break;
     case 'update':
         break;
@@ -69,8 +69,7 @@ function createStudents($conn)
 
 if(!empty($firstName) && !empty($lastName) && !empty($yeaar) && !empty($course)&& !empty($gender)){
     
-    $sql = "INSERT INTO students (firstName,lastName,yeaar,course,gender)
-    VALUES ('$firstName','$lastName', '$yeaar','$course','$gender')";
+    $sql = "INSERT INTO students(firstName,lastName,yeaar,course,gender) VALUES('$firstName','$lastName','$yeaar','$course','$gender')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -90,9 +89,9 @@ if(!empty($firstName) && !empty($lastName) && !empty($yeaar) && !empty($course)&
         return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
 
     }
-    function deleteStudents($conn,$id)
+    function updateStudents($conn,$id)
     {
-        mysqli_query($conn, "DELETE  FROM students WHERE id=$id");
+        mysqli_query($conn, "UPDATE  students WHERE id=$id");
         //$conn->close();
     }
     function test_input($data) {

@@ -13,9 +13,9 @@ switch ($_POST['action']) {
     case "create":
         $error=createContact($conn);
         break;
-    case "delete":
+    case "update":
         $id=$_POST['id'];
-        deleteContact($conn, $id);
+        updateContact($conn, $id);
         break;
     case 'update':
         break;
@@ -56,11 +56,11 @@ function createContact($conn)
 
 if(!empty($name) && !empty($email) && !empty($technologies))
 {
-$sql = "INSERT INTO contact (name,email,technologies)
-VALUES ('$name', '$email','$technologies')";
+$sql = "INSERT INTO contact(name,email,technologies)
+        . VALUES('$name','$email','$technologies')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "New Record set successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
@@ -77,9 +77,9 @@ function getContact($conn)
     return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
 
 }
-function deleteContact($conn,$id)
+function  updateContact($conn,$id)
 {
-    mysqli_query($conn, "DELETE  FROM contact WHERE id=$id");
+    mysqli_query($conn, "UPDATE contact WHERE id=$id");
     //$conn->close();
 }
 function test_input($data) {

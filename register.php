@@ -37,11 +37,11 @@ $result= getRegister($conn);
                 <div class="col-md-8">
                     <table class="table table-dark">
                         <thead><tr>
-                                     <th>id</th>
+                            <th>id</th>
                             <th>name</th>
                             <th>email</th>
                             <th>password</th>
-                            <th>Delete</th>
+                            <th>update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,9 +57,9 @@ $result= getRegister($conn);
                             <td><?=$row['password'];?></td>
                         <td>
                             <form action="padawan.php" method="POST">
-                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="action" value="update"/>
                                 <input type="hidden" name="id" value="<?=$row['id'];?>"/>
-                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
+                                <input type="submit" class="btn btn-danger" name="update" value="update"/>
                             </form>
                         </td>
                         </tr>

@@ -61,7 +61,7 @@ $result= getStudents($conn);
                             <th>yeaar</th>
                             <th>course</th>
                             <th>gender</th>
-                            <th>Delete</th>
+                            <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,9 +79,9 @@ $result= getStudents($conn);
                             <td><?=$row['gender'];?></td>
                         <td>
                             <form action="student.php" method="POST">
-                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="action" value="update"/>
                                 <input type="hidden" name="id" value="<?=$row['id'];?>"/>
-                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
+                                <input type="submit" class="btn btn-danger" name="update" value="update"/>
                             </form>
                         </td>
                         </tr>

@@ -27,9 +27,10 @@ $result= getContact($conn);
                      <input placeholder="Name:" class="form-control" type="text" name="name">
                         <span class="error"> <?=$error['name'];?></span>
                         <br>
+                        <br><br>
                          <input type="text" placeholder="Email:" class="form-control" name="email">
                         <span class="error"> <?=$error['email'];?></span>
-                        <br>
+                        <br><br>
                          <select id="gender" name="technologies" placeholder="Technologies:" class="form-control">
                             <option value="">Select</option>
                             <option value="PHP">PHP</option>
@@ -38,7 +39,7 @@ $result= getContact($conn);
                             <option value="C#">C#</option>
                         </select>
                         <span class="error"> <?=$error['technologies'];?></span>
-                        <br>
+                        <br><br>
                         <input type="hidden" name="action" value="create"/>
                          <input type="submit" name="submit" class="form-control btn btn-success" value="Submit"> 
                          
@@ -51,7 +52,7 @@ $result= getContact($conn);
                             <th>name</th>
                             <th>email</th>
                             <th>technologies</th>
-                            <th>Delete</th>
+                            <th>update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,9 +68,9 @@ $result= getContact($conn);
                             <td><?=$row['technologies'];?></td>
                         <td>
                             <form action="contact.php" method="POST">
-                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="action" value="update"/>
                                 <input type="hidden" name="id" value="<?=$row['id'];?>"/>
-                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
+                                <input type="submit" class="btn btn-danger" name="update" value="update"/>
                             </form>
                         </td>
                         </tr>

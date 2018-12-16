@@ -48,7 +48,7 @@ $result= getPerson($conn);
                             <th>Email</th>
                             <th>Gender</th>
                             <th>Website</th>
-                            <th>Delete</th>
+                            <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,9 +65,9 @@ $result= getPerson($conn);
                             <td><?=$row['website'];?></td>
                         <td>
                             <form action="padawan.php" method="POST">
-                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="action" value="update"/>
                                 <input type="hidden" name="id" value="<?=$row['id'];?>"/>
-                                <input type="submit" class="btn btn-danger" name="delete" value="delete"/>
+                                <input type="submit" class="btn btn-danger" name="update" value="update"/>
                             </form>
                         </td>
                         </tr>

@@ -14,9 +14,9 @@ switch ($_POST['action']) {
     case "create":
         $error=createPerson($conn);
         break;
-    case "delete":
+    case "update":
         $id=$_POST['id'];
-        deletePerson($conn, $id);
+        updatePerson($conn, $id);
         break;
     case 'update':
         break;
@@ -87,9 +87,9 @@ function getPerson($conn)
     return $result= mysqli_fetch_all($data,MYSQLI_ASSOC);
 
 }
-function deletePerson($conn,$id)
+function updatePerson($conn,$id)
 {
-    mysqli_query($conn, "DELETE  FROM person WHERE id=$id");
+    mysqli_query($conn, "UPDATE person WHERE id=$id");
     //$conn->close();
 }
 function test_input($data) {
