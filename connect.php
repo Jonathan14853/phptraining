@@ -1,18 +1,16 @@
 <?php
 
-
-    DEFINE ('DB_USER', 'root');
-    DEFINE ('DB_PSWD', 'password');
-    DEFINE ('DB_HOST', 'jonathan.com');
-    DEFINE ('DB_NAME', 'Jonathan');
+    $dbhost="localhost";
+    $dbuser="admin";
+    $dbpass="password";
+    $db="jonathan";
     
+    $conn=new mysqli($dbhost,$dbuser,$dbpass,$db);
     
-    $dbcon = new mysqli(DB_USER,DB_PSWD,DB_HOST,DB_NAME);
-    
-    if(!$dbcon){
-        die('error connecting to database');
+    // checking connection
+    if ($conn->connect_error){
+        echo "Connection failed";
+    }else{
+       // echo "Connection was successfull";
     }
-    
-    echo "Connection was successful";
-    
 ?>
