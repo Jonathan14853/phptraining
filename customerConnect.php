@@ -1,8 +1,8 @@
 <?php
 
     $dbhost="localhost";
-    $dbuser="admin";
-    $dbpass="password";
+    $dbuser="root";
+    $dbpass="";
     $db="customer";
     
     $conn=new mysqli($dbhost,$dbuser,$dbpass,$db);
