@@ -23,7 +23,9 @@ $result= getContact($conn);
             <div class="row">        
                 <div class="col-md-4">
             <p><span class="error"></span></p>
-                <form class="form-group" method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+                <form class="form-group" method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <!--<input type="number" placeholder="id" class="form-control" name="id"> <br/>
+                    <span class="error"> <?=$error['name'];?></span><br/> -->
                      <input placeholder="Name:" class="form-control" type="text" name="name">
                         <span class="error"> <?=$error['name'];?></span>
                         <br>

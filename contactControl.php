@@ -2,7 +2,7 @@
 // define variables and set to empty values
 
 $nameErr = $emailErr = $technologiesErr = "";
-$name = $email = $technologies  ="";
+$id = $name = $email = $technologies  ="";
 $error=array(
     'name'=>'',
     'email'=>'',
@@ -26,6 +26,11 @@ switch ($_POST['action']) {
 
 function createContact($conn)
 {
+  if(empty($_POST["id"])){
+    $error['id'] = "Please enter your id";
+  }else{
+    $id = test_input($_POST['id']);
+  }
   if (empty($_POST["name"])) {
     $error['name'] = "Please fill in your name";
   } else {
@@ -56,8 +61,7 @@ function createContact($conn)
 
 if(!empty($name) && !empty($email) && !empty($technologies))
 {
-$sql = "INSERT INTO contact(name,email,technologies)
-        . VALUES('$name','$email','$technologies')";
+$sql = "INSERT INTO contact(id,name,email,technologies) VALUES('$id','$name','$email','$technologies')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New Record set successfully";
@@ -68,7 +72,7 @@ if ($conn->query($sql) === TRUE) {
 //$conn->close();
 
 }
-return $error;
+#return $error;
 }
 
 function getContact($conn)

@@ -78,7 +78,7 @@ if ($conn->query($sql) === TRUE) {
 //$conn->close();
 
 }
-return $error;
+#return $error;
 }
 
 function getPerson($conn)

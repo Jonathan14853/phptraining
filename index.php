@@ -12,8 +12,8 @@
     </head>
     <body>
         <ol>
-            <li><a href="Customer.php">Customers</a></li>
-            <li><a href="padawan.php">Person</a></li>
+            <li><a href="customer/Customer.php">Customers</a></li>
+            <li><a href="padawan/padawan.php">Person</a></li>
             <li>#</li>
         </ol>
     </body>
